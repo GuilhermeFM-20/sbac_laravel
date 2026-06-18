@@ -1,0 +1,20 @@
+body:not(.layout-fixed) .main-sidebar {
+    background-image: linear-gradient(180deg, #063988 0%, #031b44 100%);
+    background-color: #063988; /* Fallback para navegadores antigos */
+}
+
+/* Quando a sidebar está normal (aberta) */
+.main-sidebar .logo-large-custom { display: inline-block !important; }
+.main-sidebar .logo-mini-custom { display: none !important; }
+
+/* Quando a sidebar fecha (.sidebar-collapse) */
+.sidebar-collapse .main-sidebar .logo-large-custom {
+    display: none !important;
+}
+.sidebar-collapse .main-sidebar .logo-mini-custom {
+    display: inline-block !important;
+    max-height: 33px; /* Ajuste para centralizar o ícone se necessário */
+    margin: 0 auto;
+}
+
+
