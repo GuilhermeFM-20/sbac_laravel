@@ -47,7 +47,7 @@
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->created_at->format('Y-m-d H:i') }}</td>
                                 <td class="text-right">
-                                    <a href="{{ route('items.edit', $item) }}">
+                                    <a href="{{ route('items.edit', $item) }}" class="mr-1">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a wire:click="delete({{ $item->id }})" style="cursor:pointer">
