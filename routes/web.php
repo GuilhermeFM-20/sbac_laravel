@@ -2,15 +2,12 @@
 
 use App\Livewire\Auth\Login;
 use App\Livewire\ItemManager;
-use App\Models\Items;
-use App\Http\Requests\StoreItemRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::redirect('/', '/dashboard');
@@ -20,12 +17,8 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::get('/items', ItemManager::class)->name('items');
-    Route::get('/items/create', fn() => view('livewire.item-create'))->name('items.create');
-    Route::post('/items', function (StoreItemRequest $request) {
-        Items::create($request->validated());
-
-        return redirect()->route('items')->with('success', "Item '$request->title' registrado com sucesso!");
-    })->name('items.store');
+    Route::get('/items/create', ItemManager::class)->name('items.create')->defaults('mode', 'create');
+    Route::get('/items/{item}/edit', ItemManager::class)->name('items.edit')->defaults('mode', 'edit');
 
     Route::post('/logout', function () {
         Auth::logout();

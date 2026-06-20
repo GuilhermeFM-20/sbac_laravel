@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Novo Item</h3>
+            <h3 class="card-title">Editar Item</h3>
             <div class="card-tools">
                 <a href="{{ route('items') }}" class="btn btn-sm btn-secondary">
                     <i class="fas fa-arrow-left mr-1"></i> Voltar
@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <form wire:submit.prevent="save">
+        <form wire:submit.prevent="update">
             <div class="card-body">
 
                 @if ($errors->any())
@@ -139,7 +139,7 @@
 
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">
-                    <span wire:loading.remove><i class="fas fa-save mr-1"></i> Salvar Item</span>
+                    <span wire:loading.remove><i class="fas fa-save mr-1"></i> Atualizar Item</span>
                     <span wire:loading>Salvando...</span>
                 </button>
                 <a href="{{ route('items') }}" class="btn btn-secondary ml-2">Cancelar</a>

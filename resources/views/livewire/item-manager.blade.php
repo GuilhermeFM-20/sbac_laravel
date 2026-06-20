@@ -35,15 +35,25 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nome</th>
+                            <th>Título</th>
+                            <th>Data</th>
+                            <th class="text-right">Ações</th>
                         </tr>
                         </thead>
                         <tbody>
                         @forelse($items as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->title }}</td>
                                 <td>{{ $item->created_at->format('Y-m-d H:i') }}</td>
+                                <td class="text-right">
+                                    <a href="{{ route('items.edit', $item) }}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a wire:click="delete({{ $item->id }})" style="cursor:pointer">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
                             </tr>
                             @empty
                             <tr>
