@@ -1,7 +1,7 @@
 <div>
     <div class="row mb-4">
         <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Manage Items</h1>
+            <h1 class="m-0 text-dark">Itens</h1>
         </div>
     </div>
 
@@ -12,47 +12,22 @@
             {{ session('success') }}
         </div>
     @endif
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">New Item</h3>
-                </div>
-                <form wire:submit.prevent="saveItem">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="itemName">Item Name</label>
-                            <input type="text"
-                                   wire:model="newItemName"
-                                   class="form-control @error('newItemName') is-invalid @enderror"
-                                   id="itemName"
-                                   placeholder="Enter item name...">
-                            @error('newItemName')
-                            <span class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i> Save
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="col-md-8">
+        <div >
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Registered Items</h3>
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 200px;">
+                    <h3 class="card-title">Registrar Itens</h3>
+                    <div class="card-tools ">
+                        <div class="input-group input-group-sm" style="width: 400px;">
                             <input type="text"
                                    wire:model.live="search"
-                                   class="form-control float-right"
-                                   placeholder="Search item...">
+                                   class="form-control mr-2"
+                                   placeholder="Search item..."
+                                   style="border-radius: 6px;">
+                            <div class="input-group-append">
+                                <a href="{{ route('items.create') }}" class="btn btn-primary" style="border-radius: 6px;">Criar Item</a>
+                            </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
@@ -60,8 +35,7 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Created At</th>
+                            <th>Nome</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -81,5 +55,5 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </div>

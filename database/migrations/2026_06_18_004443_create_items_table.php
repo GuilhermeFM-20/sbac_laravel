@@ -13,7 +13,7 @@ class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->string('isbn', 20)->nullable()->unique();
+            $table->string('tomb_id', 20)->nullable()->unique();
             $table->string('publisher')->nullable();
             $table->year('publication_year')->nullable();
             $table->string('category')->nullable();

@@ -10,7 +10,7 @@ class Items extends Model
     protected $fillable = [
         'title',
         'author',
-        'isbn',
+        'tomb_id',
         'publisher',
         'publication_year',
         'category',

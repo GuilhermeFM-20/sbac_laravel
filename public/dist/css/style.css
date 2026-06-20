@@ -1,20 +1,94 @@
-body:not(.layout-fixed) .main-sidebar {
+/* ── 1. Body constraint ───────────────────────── */
+html, body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* ── 2. Wrapper: horizontal flex row ─────────── */
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+/* ── 3. Sidebar (left column, full height) ───── */
+.main-sidebar {
+    flex-shrink: 0;
+    width: 250px;
+    height: 100vh !important;
+    position: relative !important;
+    top: auto !important;
+    overflow-y: auto;
+    overflow-x: hidden;
     background-image: linear-gradient(180deg, #063988 0%, #031b44 100%);
-    background-color: #063988; /* Fallback para navegadores antigos */
+    background-color: #063988;
+    transition: width 0.3s ease;
+    z-index: 1035;
 }
 
-/* Quando a sidebar está normal (aberta) */
-.main-sidebar .logo-large-custom { display: inline-block !important; }
-.main-sidebar .logo-mini-custom { display: none !important; }
-
-/* Quando a sidebar fecha (.sidebar-collapse) */
-.sidebar-collapse .main-sidebar .logo-large-custom {
-    display: none !important;
+.sidebar-collapse .main-sidebar {
+    width: 4.6rem;
 }
-.sidebar-collapse .main-sidebar .logo-mini-custom {
-    display: inline-block !important;
-    max-height: 33px; /* Ajuste para centralizar o ícone se necessário */
+
+/* ── 4. Right column: header + content + footer ─ */
+.right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    min-width: 0;
+    overflow: hidden;
+}
+
+/* ── 5. Header (top of right column) ─────────── */
+.main-header {
+    flex-shrink: 0;
+    width: 100% !important;
+    position: sticky !important;
+    top: 0;
+    z-index: 1030;
+    margin-left: 0 !important;
+}
+
+/* ── 6. Scrollable content area ──────────────── */
+main.content-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    margin: 0 !important;
+    padding: 1.5rem;
+    background-color: #f4f6f9;
+}
+
+/* ── 7. Content card (centered inner div) ─────── */
+.content-card {
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
+/* ── 8. Footer (bottom of right column) ──────── */
+.main-footer {
+    flex-shrink: 0;
+    margin-left: 0 !important;
+    width: 100%;
+}
 
+/* ── Sidebar brand-image toggle ──────────────── */
+.main-sidebar .brand-image { display: none !important; }
+.main-sidebar .logo-large-custom { display: inline-block !important; }
+.main-sidebar .logo-mini-custom { display: none !important; }
+
+.sidebar-collapse .main-sidebar .brand-image { display: inline-block !important; }
+.sidebar-collapse .main-sidebar .logo-large-custom { display: none !important; }
+.sidebar-collapse .main-sidebar .logo-mini-custom {
+    display: inline-block !important;
+    max-height: 33px;
+    margin: 0 auto;
+}

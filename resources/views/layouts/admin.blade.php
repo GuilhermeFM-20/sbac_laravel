@@ -18,34 +18,46 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-        </ul>
-    </nav>
-
+    {{-- Sidebar: left column, full 100vh --}}
     @include('components.sidebar')
 
-    <div class="content-wrapper">
-        <div class="content-header">
-            <div class="container-fluid">
-                <h1>@yield('page-title', 'Dashboard')</h1>
-            </div>
-        </div>
-        <div class="content">
-            <div class="container-fluid">
+    {{-- Right column: header + scrollable content + footer --}}
+    <div class="right-column">
+
+        <header class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <span class="nav-link text-muted">
+                        <i class="fas fa-user mr-1"></i>{{ auth()->user()->name }}
+                    </span>
+                </li>
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="nav-link btn btn-link text-danger">
+                            <i class="fas fa-sign-out-alt mr-1"></i>Sair
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </header>
+
+        <main class="content-wrapper">
                 {{ $slot ?? '' }}
                 @yield('content')
-            </div>
-        </div>
-    </div>
+        </main>
 
-    <footer class="main-footer">
-        <div class="float-right d-none d-sm-inline">SBAC System</div>
-        <strong>&copy; {{ date('Y') }}</strong> Todos os direitos reservados.
-    </footer>
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-inline">SBAC System</div>
+            <strong>&copy; {{ date('Y') }}</strong> Todos os direitos reservados.
+        </footer>
+
+    </div>
 </div>
 
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

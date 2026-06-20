@@ -2,13 +2,16 @@
 
 namespace App\Livewire;
 
+use App\Models\Items;
 use Livewire\Component;
 
 class ItemManager extends Component
 {
     public string $search = '';
+    public string $name = '';
+    public string $actor = '';
     public string $newItemName = '';
-    public function saveItem(): void
+    public function save(): void
     {
         $this->validate([
             'newItemName' => 'required|min:3',
@@ -24,10 +27,7 @@ class ItemManager extends Component
      */
     public function render()
     {
-        $items = collect([
-            (object)['id' => 1, 'name' => 'University Notebook', 'created_at' => now()],
-            (object)['id' => 2, 'name' => 'Blue Pen', 'created_at' => now()],
-        ]);
+        $items = Items::all();
 
         if ($this->search) {
             $items = $items->filter(function($item) {
